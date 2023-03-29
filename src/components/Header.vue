@@ -12,7 +12,7 @@ export default {
         class="h-100 me-2"
         alt="logo Yu-Gi-Ho!"
       />
-      <h1>Yu-Gi-Ho! Api</h1>
+      <h1 class="fs-2 fw-bold">Yu-Gi-Ho! Api</h1>
     </div>
   </header>
 </template>

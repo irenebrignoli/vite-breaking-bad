@@ -18,7 +18,7 @@ export default {
 <template>
   <div class="cards-container">
     <div class="row justify-content-center flex-wrap">
-      <div v-for="(card, i) in store.cardData" class="card-box my-2" :key="i">
+      <div v-for="(card, i) in store.cardData" class="card-box my-3" :key="i">
         <Card
           :images="card.card_images"
           :name="card.name"
