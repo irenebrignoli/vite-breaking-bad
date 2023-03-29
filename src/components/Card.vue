@@ -2,27 +2,20 @@
 export default {
   name: "Card",
   props: {
-    images: String,
-    sets: Array,
+    images: Array,
+    name: String,
+    archetype: String,
   },
 };
 </script>
 
 <template>
   <div class="card">
-    <img
-      v-for="image in images"
-      :src="image.image_url"
-      class="card-img-top"
-      alt="..."
-    />
-    <div v-for="set in sets" class="card-body">
-      <h5 class="card-title">{{ set.set_name }}</h5>
+    <img :src="images[0].image_url" class="card-img-top" :alt="images[0].id" />
+    <div class="card-body ms_card_body">
+      <h5 class="card-title">{{ name }}</h5>
       <div class="card-text rarity">
-        {{ set.set_rarity }}
-      </div>
-      <div class="card-text price">
-        {{ set.set_price }}
+        {{ archetype }}
       </div>
     </div>
   </div>
@@ -30,4 +23,8 @@ export default {
 
 <style lang="scss" scoped>
 @use "../styles/partials/variables";
+{
+.ms_card_body{
+  min-height: 200px;
+}
 </style>

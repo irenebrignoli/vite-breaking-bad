@@ -18,7 +18,7 @@ export default {
   methods: {
     getCards() {
       axios
-        .get("https://db.ygoprodeck.com/api/v7/cardinfo.php?name=Dark Magician")
+        .get("https://db.ygoprodeck.com/api/v7/cardinfo.php?num=20&offset=0/")
         .then((response) => {
           console.log(response.data.data);
           this.store.cardData = response.data.data;

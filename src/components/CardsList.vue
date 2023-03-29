@@ -17,8 +17,14 @@ export default {
 
 <template>
   <div class="cards-container">
-    <div v-for="(cardType, i) in store.cardData" class="card-box" :key="i">
-      <Card :images="cardType.card_images" :sets="cardType.card_sets" />
+    <div class="row justify-content-center flex-wrap">
+      <div v-for="(card, i) in store.cardData" class="card-box my-2" :key="i">
+        <Card
+          :images="card.card_images"
+          :name="card.name"
+          :archetype="card.archetype"
+        />
+      </div>
     </div>
   </div>
 </template>
@@ -30,11 +36,9 @@ export default {
   background-color: variables.$list-bg-color;
   border-radius: 10px;
   padding: 50px;
-  display: flex;
-  flex-wrap: wrap;
 
   .card-box {
-    width: 230px;
+    width: 240px;
   }
 }
 </style>
