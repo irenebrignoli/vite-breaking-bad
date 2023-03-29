@@ -2,17 +2,38 @@
 import Header from "./components/Header.vue";
 import CardsList from "./components/CardsList.vue";
 
+import axios from "axios";
+import { store } from "./store.js";
+
 export default {
   components: {
     Header,
     CardsList,
+  },
+  data() {
+    return {
+      store,
+    };
+  },
+  methods: {
+    getCards() {
+      axios
+        .get("https://db.ygoprodeck.com/api/v7/cardinfo.php?name=Dark Magician")
+        .then((response) => {
+          console.log(response.data);
+          this.store.cardSet = response.data;
+        });
+    },
+  },
+  created() {
+    this.getCards();
   },
 };
 </script>
 
 <template>
   <Header />
-  <main class="pt-5">
+  <main class="py-5">
     <div class="container">
       <CardsList />
     </div>
