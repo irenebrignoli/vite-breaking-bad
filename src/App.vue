@@ -1,6 +1,7 @@
 <script>
 import Header from "./components/Header.vue";
 import CardsList from "./components/CardsList.vue";
+import Loading from "./components/Loading.vue";
 
 import axios from "axios";
 import { store } from "./store.js";
@@ -9,6 +10,7 @@ export default {
   components: {
     Header,
     CardsList,
+    Loading,
   },
   data() {
     return {
@@ -22,6 +24,7 @@ export default {
         .then((response) => {
           console.log(response.data.data);
           this.store.cardData = response.data.data;
+          this.store.loading = false;
         });
     },
   },
@@ -38,6 +41,7 @@ export default {
       <CardsList />
     </div>
   </main>
+  <Loading />
 </template>
 
 <style lang="scss">
