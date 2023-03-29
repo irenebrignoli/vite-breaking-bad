@@ -1,5 +1,11 @@
 @use "bootstrap";
+@use "./partials/variables";
 
 body {
   font-family: sans-serif;
+}
+
+main {
+  height: calc(100vh - 100px);
+  background-color: variables.$main-bg-color;
 }
