@@ -40,6 +40,7 @@ export default {
           this.store.allArchetype = response.data;
         });
     },
+
     // getArchetypeArray() {
     //   this.store.cardData.forEach((card) => {
     //     if (
