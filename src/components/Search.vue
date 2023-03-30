@@ -16,7 +16,7 @@ export default {
 
 <template>
   <label for="select"></label>
-  <select id="select">
+  <select id="select" @change="$emit('selectArchetype')" v-model="store.value">
     <option v-for="(type, i) in archetypeArray" :key="i" :value="type">
       {{ type }}
     </option>

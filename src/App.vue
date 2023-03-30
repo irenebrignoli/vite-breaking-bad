@@ -21,21 +21,42 @@ export default {
   },
   methods: {
     getCards() {
-      axios
-        .get("https://db.ygoprodeck.com/api/v7/cardinfo.php?num=20&offset=0/")
-        .then((response) => {
-          this.store.cardData = response.data.data;
-          this.store.cardData.forEach((card) => {
-            if (
-              !this.store.allArchetype.includes(card.archetype) &&
-              !card.archetype == ""
-            ) {
-              this.store.allArchetype.push(card.archetype);
-            }
-          });
+      let urlApi =
+        "https://db.ygoprodeck.com/api/v7/cardinfo.php?num=20&offset=0/";
 
-          this.store.loading = false;
-        });
+      switch (this.store.value) {
+        case "Alien":
+          urlApi += "&archetype=Alien";
+          break;
+
+        case "Noble Knight":
+          urlApi += "&archetype=Noble Knight";
+          break;
+
+        case "Melodius":
+          urlApi += "&archetype=Melodius";
+          break;
+
+        case "Archfiend":
+          urlApi += "&archetype=Archfiend";
+          break;
+      }
+
+      axios.get(urlApi).then((response) => {
+        this.store.cardData = response.data.data;
+        this.getArchetypeArray();
+        this.store.loading = false;
+      });
+    },
+    getArchetypeArray() {
+      this.store.cardData.forEach((card) => {
+        if (
+          !this.store.allArchetype.includes(card.archetype) &&
+          !card.archetype == ""
+        ) {
+          this.store.allArchetype.push(card.archetype);
+        }
+      });
     },
   },
   created() {
@@ -48,7 +69,10 @@ export default {
   <Header />
   <main class="py-5">
     <div class="container">
-      <Search :archetypeArray="store.allArchetype" />
+      <Search
+        :archetypeArray="store.allArchetype"
+        @selectArchetype="getCards"
+      />
       <CardsList />
     </div>
   </main>
